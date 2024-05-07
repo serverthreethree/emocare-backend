@@ -186,35 +186,29 @@ app.get('/apiold/get-usersold', async (req, res) => {
 
 
 
-// PUT request for updating user details
-router.put('/api/updateUser', async (req, res) => {
+//Routes for games users end here
+
+
+
+
+app.put('/api/updateUser/:id', async (req, res) => {
+  const { id } = req.params;
   const { email, name, password } = req.body;
 
   try {
-    const user = await Gameuser2.findOne({ email });
+      const fighter = await Gameuser2.findByIdAndUpdate(id, { email, name, password }, { new: true });
 
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
+      if (!fighter) {
+          return res.status(404).json({ message: 'Fighter not found' });
+      }
 
-    // Update name and email if provided
-    if (name) user.name = name;
-    if (email) user.email = email;
-
-    // Update password if provided
-    if (password) {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      user.password = hashedPassword;
-    }
-
-    await user.save();
-
-    res.status(200).json({ message: 'User updated successfully', userName: user.name, userEmail: user.email });
+      res.status(200).json({ message: 'Profile updated successfully', fighter });
   } catch (error) {
-    res.status(500).json({ message: 'Internal server error', error: error.message });
+      console.error('Error updating:', error);
+      res.status(500).json({ message: 'Internal server error' });
   }
 });
-//Routes for games users end here
+
 
 
 

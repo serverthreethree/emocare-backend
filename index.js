@@ -67,7 +67,7 @@ app.post('/api/loginold', async (req, res) => {
 //Routes
 app.post('/api/login', async (req, res) => {
   // Respond with a message that backend services are on hold
-  res.status(503).json({ message: 'Server is on hold till Thursday' });
+  res.status(500).json({ message: 'Server is on hold till Thursday' });
 });
 
 

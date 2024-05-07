@@ -42,7 +42,7 @@ const Gameuser2 = new mongoose.model("Gameuser2", userSchema2);
 
 
 //Routes
-app.post('/api/loginold', async (req, res) => {
+app.post('/apiold/loginold', async (req, res) => {
   const { email, password } = req.body;
 
   try {

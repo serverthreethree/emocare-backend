@@ -46,7 +46,7 @@ app.post('/api/loginold', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await Gameuser2.findOne({ email: email });
+    const user = await Gameuser22222.findOne({ email: email });
 
     if (user) {
       const passwordMatch = await bcrypt.compare(password, user.password);

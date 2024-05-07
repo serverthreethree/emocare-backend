@@ -67,24 +67,8 @@ app.post('/api/loginold', async (req, res) => {
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
-  try {
-    const user = await Gameuser2.findOne({ email: email });
-
-    if (user) {
-      const passwordMatch = await bcrypt.compare(password, user.password);
-
-      if (passwordMatch) {
-        const objectId = user._id.toString();
-        res.status(401).json({ message: 'You Cannot Login until Thursday', objectId: objectId });
-      } else {
-        res.status(401).json({ message: 'Invalid password' });
-      }
-    } else {
-      res.status(404).json({ message: 'User not found' });
-    }
-  } catch (error) {
-    res.status(500).json({ message: 'Internal server error' });
-  }
+  // Directly return a message that the server is on hold
+  res.status(503).json({ message: 'Server is on hold till Thursday' });
 });
 
 

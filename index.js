@@ -79,7 +79,7 @@ const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-app.post('/api/register', upload.single('image'), async (req, res) => {
+app.post('/apiold/registerold', upload.single('image'), async (req, res) => {
   const formData = new FormData();
   const { default: fetch } = await import('node-fetch');
   formData.append('image', req.file.buffer.toString('base64'));
@@ -122,7 +122,7 @@ app.post('/api/register', upload.single('image'), async (req, res) => {
 
 
 // API endpoint to retrieve all user data by name
-app.get('/api/user/:name', async (req, res) => {
+app.get('/apiold/userold/:nameold', async (req, res) => {
   const { name } = req.params;
 
   try {
@@ -141,7 +141,7 @@ app.get('/api/user/:name', async (req, res) => {
 
 
 // Delete a user by ObjectId
-app.delete('/api/userToDelete/:objectId', async (req, res) => {
+app.delete('/apiold/userToDeleteold/:objectIdold', async (req, res) => {
   const { objectId } = req.params;
 
   try {
@@ -158,7 +158,7 @@ app.delete('/api/userToDelete/:objectId', async (req, res) => {
   }
 });
 
-app.get('/api/users/:objectId', async (req, res) => {
+app.get('/apiold/usersold/:objectIdold', async (req, res) => {
   const { objectId } = req.params;
 
   try {
@@ -174,7 +174,7 @@ app.get('/api/users/:objectId', async (req, res) => {
 });
 
 // API endpoint to fetch all user data
-app.get('/api/get-users', async (req, res) => {
+app.get('/apiold/get-usersold', async (req, res) => {
   try {
     const users = await Gameuser2.find({});
     res.json({ users });

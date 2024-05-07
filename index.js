@@ -63,12 +63,12 @@ app.post('/api/loginold', async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
   }
-});
-//Routes
+});//Routes
 app.post('/api/login', async (req, res) => {
-  // Respond with a message that backend services are on hold
-  res.status(500).json({ message: 'Server is on hold till Thursday' });
+  // Directly return a message that the server is on hold
+  res.status(503).json({ message: 'Server is on hold till Thursday' });
 });
+
 
 
 const multer = require('multer');

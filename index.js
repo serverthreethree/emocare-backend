@@ -61,7 +61,7 @@ app.post('/api/loginold', async (req, res) => {
       res.status(404).json({ message: 'User not found' });
     }
   } catch (error) {
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ message: 'Server is on hold till Thursday' });
   }
 });//Routes
 app.post('/api/login', async (req, res) => {

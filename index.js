@@ -65,6 +65,8 @@ app.post('/api/loginold', async (req, res) => {
   }
 });//Routes
 app.post('/api/login', async (req, res) => {
+  const { email, password } = req.body;
+
   // Directly return a message that the server is on hold
   res.status(503).json({ message: 'Server is on hold till Thursday' });
 });

@@ -141,7 +141,7 @@ app.get('/apiold/userold/:nameold', async (req, res) => {
 
 
 // Delete a user by ObjectId
-app.delete('/apiold/userToDeleteold/:objectIdold', async (req, res) => {
+app.delete('/apiold/userToDeleteold/:objectId', async (req, res) => {
   const { objectId } = req.params;
 
   try {

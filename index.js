@@ -194,9 +194,10 @@ app.get('/apiold/get-usersold', async (req, res) => {
 app.put('/api/updateUser/:id', async (req, res) => {
   const { id } = req.params;
   const { email, name, password } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
 
   try {
-      const fighter = await Gameuser2.findByIdAndUpdate(id, { email, name, password }, { new: true });
+      const fighter = await Gameuser2.findByIdAndUpdate(id, { email, name, password:hashedPassword }, { new: true });
 
       if (!fighter) {
           return res.status(404).json({ message: 'Fighter not found' });

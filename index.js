@@ -288,6 +288,37 @@ transporter.sendMail(storeMailOptions, function(error, storeInfo) {
 
 
 
+//code for blogs start
+
+
+
+const forumSchemaNew = new mongoose.Schema({
+  name: String,
+  text: String,
+  forumDate: Date
+});
+
+const Forumfyp = mongoose.model('Forumfyp', forumSchemaNew);
+
+app.post('/uploadforum', async (req, res) => {
+  
+  const {  name, text, forumDate } = req.body; // Destructure title and text from req.body
+
+  // Save the image URL, title, and text to the database
+  const newBlog = new Forumfyp({ name:name, text:text, forumDate:forumDate });
+  await newBlog.save();
+  res.status(200).send('Blog uploaded successfully');
+});
+
+
+
+// Define route for fetching images
+app.get('/myForums', async (req, res) => {
+  const images = await Forumfyp.find();
+  res.send(images);
+});
+
+//code for blogs end
 
 
 

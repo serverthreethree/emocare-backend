@@ -42,7 +42,7 @@ const Gameuser2 = new mongoose.model("Gameuser2", userSchema2);
 
 
 //Routes
-app.post('/apiold/loginold', async (req, res) => {
+app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -63,13 +63,9 @@ app.post('/apiold/loginold', async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
   }
-});//Routes
-app.post('/api/login', async (req, res) => {
-  const { email, password } = req.body;
 
-  // Directly return a message that the server is on hold
-  res.status(503).json({ message: 'Server is on hold till Thursday' });
 });
+
 
 
 
@@ -79,7 +75,7 @@ const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-app.post('/apiold/registerold', upload.single('image'), async (req, res) => {
+app.post('/api/register', upload.single('image'), async (req, res) => {
   const formData = new FormData();
   const { default: fetch } = await import('node-fetch');
   formData.append('image', req.file.buffer.toString('base64'));
@@ -122,7 +118,7 @@ app.post('/apiold/registerold', upload.single('image'), async (req, res) => {
 
 
 // API endpoint to retrieve all user data by name
-app.get('/apiold/userold/:nameold', async (req, res) => {
+app.get('/api/user/:name', async (req, res) => {
   const { name } = req.params;
 
   try {
@@ -141,7 +137,7 @@ app.get('/apiold/userold/:nameold', async (req, res) => {
 
 
 // Delete a user by ObjectId
-app.delete('/apiold/userToDeleteold/:objectId', async (req, res) => {
+app.delete('/api/userToDelete/:objectId', async (req, res) => {
   const { objectId } = req.params;
 
   try {
@@ -158,7 +154,7 @@ app.delete('/apiold/userToDeleteold/:objectId', async (req, res) => {
   }
 });
 
-app.get('/apiold/usersold/:objectId', async (req, res) => {
+app.get('/api/users/:objectId', async (req, res) => {
   const { objectId } = req.params;
 
   try {
@@ -174,7 +170,7 @@ app.get('/apiold/usersold/:objectId', async (req, res) => {
 });
 
 // API endpoint to fetch all user data
-app.get('/apiold/get-usersold', async (req, res) => {
+app.get('/api/get-users', async (req, res) => {
   try {
     const users = await Gameuser2.find({});
     res.json({ users });

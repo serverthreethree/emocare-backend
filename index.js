@@ -42,7 +42,7 @@ const Gameuser2 = new mongoose.model("Gameuser2", userSchema2);
 
 
 //Routes
-app.post('/api/login', async (req, res) => {
+app.post('/api/loginold', async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -64,6 +64,13 @@ app.post('/api/login', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+//Routes
+app.post('/api/login', async (req, res) => {
+  // Respond with a message that backend services are on hold
+  res.status(503).json({ message: 'Server is on hold till Thursday' });
+});
+
+
 const multer = require('multer');
 
 // Configure multer for file upload

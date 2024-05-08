@@ -42,7 +42,7 @@ const Gameuser2 = new mongoose.model("Gameuser2", userSchema2);
 
 
 //Routes
-app.post('/apivascular/loginvascular', async (req, res) => {
+app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -75,7 +75,7 @@ const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-app.post('/apivascular/registervascular', upload.single('image'), async (req, res) => {
+app.post('/api/register', upload.single('image'), async (req, res) => {
   const formData = new FormData();
   const { default: fetch } = await import('node-fetch');
   formData.append('image', req.file.buffer.toString('base64'));
@@ -118,7 +118,7 @@ app.post('/apivascular/registervascular', upload.single('image'), async (req, re
 
 
 // API endpoint to retrieve all user data by name
-app.get('/api/uservascular/:name', async (req, res) => {
+app.get('/api/user/:name', async (req, res) => {
   const { name } = req.params;
 
   try {
@@ -137,7 +137,7 @@ app.get('/api/uservascular/:name', async (req, res) => {
 
 
 // Delete a user by ObjectId
-app.delete('/api/userToDeletevascular/:objectId', async (req, res) => {
+app.delete('/api/userToDelete/:objectId', async (req, res) => {
   const { objectId } = req.params;
 
   try {
@@ -154,7 +154,7 @@ app.delete('/api/userToDeletevascular/:objectId', async (req, res) => {
   }
 });
 
-app.get('/apivascular/usersvascular/:objectId', async (req, res) => {
+app.get('/api/users/:objectId', async (req, res) => {
   const { objectId } = req.params;
 
   try {
@@ -170,7 +170,7 @@ app.get('/apivascular/usersvascular/:objectId', async (req, res) => {
 });
 
 // API endpoint to fetch all user data
-app.get('/apivascular/get-usersvascular', async (req, res) => {
+app.get('/api/get-users', async (req, res) => {
   try {
     const users = await Gameuser2.find({});
     res.json({ users });
@@ -187,7 +187,7 @@ app.get('/apivascular/get-usersvascular', async (req, res) => {
 
 
 
-app.put('/api/updateUservascular/:id', async (req, res) => {
+app.put('/api/updateUser/:id', async (req, res) => {
   const { id } = req.params;
   const { email, name, password } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
@@ -296,7 +296,7 @@ const forumSchemaNew = new mongoose.Schema({
 
 const Forumfyp = mongoose.model('Forumfyp', forumSchemaNew);
 
-app.post('/uploadforumvascular', async (req, res) => {
+app.post('/uploadforum', async (req, res) => {
   
   const {  name, text, forumDate } = req.body; // Destructure title and text from req.body
 
@@ -309,7 +309,7 @@ app.post('/uploadforumvascular', async (req, res) => {
 
 
 // Define route for fetching images
-app.get('/myForumsvascular', async (req, res) => {
+app.get('/myForums', async (req, res) => {
   const images = await Forumfyp.find();
   res.send(images);
 });
